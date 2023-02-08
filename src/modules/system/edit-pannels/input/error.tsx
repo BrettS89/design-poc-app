@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 import TextField from '@mui/material/TextField';
 
-const ErrorState = ({ componentStyles, onSetComponentStyles }) => {
+const ErrorState = ({ componentStyles, onSetComponentStyles, variant }) => {
   return (
     <div>
       <TextField

@@ -9,31 +9,23 @@ import Select from '@mui/material/Select';
 import BaseComponent from './base';
 import ErrorComponent from './error';
 
-
 const EditInput = ({ componentStyles, setComponentStyles, setDummyText, dummyText }) => {
-  const [componentState, setComponentState] = React.useState('base');
+  const [variant, setVariant] = React.useState('base');
 
   const onSetComponentStyles = (e) => {
-    let val = e.target.type === 'number' ? Number(e.target.value) : e.target.value;
+    let val = e.target.value ?? null;
 
-    if (!e.target.value) {
-      val = null;
+    if (val && e.target.type === 'number'){
+      val = Number(e.target.value);
     }
 
-    if (componentState === 'error') {
-      setComponentStyles({
-        ...componentStyles,
-        error: {
-          ...componentStyles.error,
-          [e.target.id]: val,
-        }
-      });
-    } else {
-      setComponentStyles({
-        ...componentStyles,
+    setComponentStyles({
+      ...componentStyles,
+      [variant]: {
+        ...(componentStyles[variant] || {}),
         [e.target.id]: val,
-      });
-    }
+      },
+    });
   };
 
   return (
@@ -51,57 +43,34 @@ const EditInput = ({ componentStyles, setComponentStyles, setDummyText, dummyTex
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={componentState}
+          value={variant}
           label="Component state"
           size='small'
           style={{ marginBottom: 35 }}
-          onChange={e => setComponentState(e.target.value)}
+          onChange={e => setVariant(e.target.value)}
         >
           <MenuItem value='base'>Base</MenuItem>
           <MenuItem value='error'>Error</MenuItem>
         </Select>
       </FormControl>
 
-      {componentState === 'base' && (
+      {variant === 'base' && (
         <BaseComponent
           componentStyles={componentStyles}
           onSetComponentStyles={onSetComponentStyles}
+          variant={variant}
         />
       )}
 
-      {componentState === 'error' && (
+      {variant === 'error' && (
         <ErrorComponent
           componentStyles={componentStyles}
           onSetComponentStyles={onSetComponentStyles}
+          variant={variant}
+
         />
       )}
 
-      {/* <TextField
-        id='backgroundColor'
-        label='Background color'
-        value={componentStyles.backgroundColor || ''}
-        size='small'
-        style={styles.field}
-        onChange={onSetComponentStyles}
-      />
-      <TextField
-        id='borderRadius'
-        label='Border radius'
-        value={componentStyles.borderRadius || ''}
-        size='small'
-        style={styles.field}
-        type='number'
-        onChange={onSetComponentStyles}
-      />
-      <TextField
-        id='color'
-        label='Font color'
-        value={componentStyles.color || ''}
-        size='small'
-        style={styles.field}
-        type='text'
-        onChange={onSetComponentStyles}
-      /> */}
     </div>
   );
 };

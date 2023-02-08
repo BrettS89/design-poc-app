@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './styles';
 import TextField from '@mui/material/TextField';
 
-const BaseState = ({ componentStyles, onSetComponentStyles }) => {
+const BaseState = ({ componentStyles, onSetComponentStyles, variant }) => {
   return (
     <div>
       <TextField
         id='backgroundColor'
         label='Background color'
-        value={componentStyles.backgroundColor || ''}
+        value={componentStyles[variant]?.backgroundColor || ''}
         size='small'
         style={styles.field}
         onChange={onSetComponentStyles}
@@ -16,7 +16,7 @@ const BaseState = ({ componentStyles, onSetComponentStyles }) => {
       <TextField
         id='borderRadius'
         label='Border radius'
-        value={componentStyles.borderRadius || ''}
+        value={componentStyles[variant]?.borderRadius || ''}
         size='small'
         style={styles.field}
         type='number'
@@ -25,7 +25,7 @@ const BaseState = ({ componentStyles, onSetComponentStyles }) => {
       <TextField
         id='color'
         label='Font color'
-        value={componentStyles.color || ''}
+        value={componentStyles[variant]?.color || ''}
         size='small'
         style={styles.field}
         type='text'

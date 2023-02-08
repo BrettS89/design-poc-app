@@ -10,16 +10,16 @@ import BaseState from './base';
 import DisabledState from './disabled';
 
 const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyText }) => {
-  const [componentState, setComponentState] = React.useState('base');
+  const [variant, setVariant] = React.useState('base');
 
   const onSetComponentStyles = (e) => {
-    let val = e.target.type === 'number' ? `${e.target.value}px` : e.target.value;
+    let val = e.target.value ?? null;
 
-    if (!e.target.value) {
-      val = null;
+    if (val && e.target.type === 'number'){
+      val = Number(e.target.value);
     }
 
-    if (componentState === 'disabled') {
+    if (variant === 'disabled') {
       setComponentStyles({
         ...componentStyles,
         disabled: {
@@ -30,7 +30,10 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
     } else {
       setComponentStyles({
         ...componentStyles,
-        [e.target.id]: val,
+        [variant]: {
+          ...(componentStyles[variant] || {}),
+          [e.target.id]: val,
+        }
       });
     }
   };
@@ -50,30 +53,32 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={componentState}
+          value={variant}
           label="Component state"
           size='small'
           style={{ marginBottom: 35 }}
-          onChange={e => setComponentState(e.target.value)}
+          onChange={e => setVariant(e.target.value)}
         >
           <MenuItem value='base'>Base</MenuItem>
-          <MenuItem value='disabled'>Disabled</MenuItem>
+          {/* <MenuItem value='disabled'>Disabled</MenuItem> */}
         </Select>
       </FormControl>
 
-      {componentState === 'base' && (
+      {variant === 'base' && (
         <BaseState
           componentStyles={componentStyles}
           onSetComponentStyles={onSetComponentStyles}
+          variant={variant}
         />
       )}
 
-      {componentState === 'disabled' && (
+      {/* {variant === 'disabled' && (
         <DisabledState
           componentStyles={componentStyles}
           onSetComponentStyles={onSetComponentStyles}
+          variant={variant}
         />
-      )}
+      )} */}
 
     </div>
   );
