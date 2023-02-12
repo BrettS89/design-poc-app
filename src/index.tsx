@@ -16,7 +16,7 @@ root.render(
   <Provider store={store()}>
     <ThemeProvider theme={theme}>
       <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.REACT_APP_BASE_NAME}>
           <App />
         </BrowserRouter>
       </React.StrictMode>
