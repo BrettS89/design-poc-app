@@ -15,7 +15,7 @@ const BaseState = ({ componentStyles, onSetComponentStyles, variant }) => {
       />
       <TextField
         id='borderRadius'
-        label='Border radius'
+        label='Border radius (px)'
         value={componentStyles[variant]?.borderRadius || ''}
         size='small'
         style={styles.field}

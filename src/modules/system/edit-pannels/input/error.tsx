@@ -14,7 +14,7 @@ const ErrorState = ({ componentStyles, onSetComponentStyles, variant }) => {
         onChange={onSetComponentStyles}
       />
       <TextField
-        id='borderRadius'
+        id='borderRadius (px)'
         label='Border radius'
         value={componentStyles.error?.borderRadius || ''}
         size='small'

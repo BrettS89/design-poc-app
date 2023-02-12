@@ -1,18 +1,21 @@
 const styles = {
   appBar: {
-    height: 80
+    height: 70
   },
   logo: {
     display: 'flex',
     alignItems: 'center',
     textTransform: 'uppercase' as const,
     color: '#fff',
+    fontWeight: 800,
+    fontSize: 22,
+    letterSpacing: 1,
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
-    height: 80,
-    paddingLeft: 30,
+    height: 70,
+    paddingLeft: 15,
   },
   leftItems: {
     display: 'flex',

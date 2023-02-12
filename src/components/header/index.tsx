@@ -6,7 +6,7 @@ import styles from './styles';
 const AppBar = styled(BaseAppBar)(styles.appBar)
 const LeftContent = styled('div')(styles.leftItems)
 const RightContent = styled('div')(styles.rightItems);
-const Logo = styled('h2')(styles.logo);
+const Logo = styled('div')(styles.logo);
 const Link = styled('span')(styles.link);
 
 const Header = () => {

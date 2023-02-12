@@ -14,18 +14,23 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
 
   const onSetComponentStyles = (e) => {
     let val = e.target.value ?? null;
-
+    console.log(val);
     if (val && e.target.type === 'number'){
       val = Number(e.target.value);
     }
 
+    if (val === '') val = undefined;
+
     if (variant === 'disabled') {
       setComponentStyles({
         ...componentStyles,
-        disabled: {
-          ...(componentStyles.disabled || {}),
-          [e.target.id]: val,
-        },
+        ['base']: {
+          ...componentStyles.base,
+          disabled: {
+            ...(componentStyles.base?.disabled || {}),
+            [e.target.id]: val,
+          },
+        }
       });
     } else {
       setComponentStyles({
@@ -60,7 +65,7 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
           onChange={e => setVariant(e.target.value)}
         >
           <MenuItem value='base'>Base</MenuItem>
-          {/* <MenuItem value='disabled'>Disabled</MenuItem> */}
+          <MenuItem value='disabled'>Disabled</MenuItem>
         </Select>
       </FormControl>
 
@@ -72,13 +77,13 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
         />
       )}
 
-      {/* {variant === 'disabled' && (
+      {variant === 'disabled' && (
         <DisabledState
           componentStyles={componentStyles}
           onSetComponentStyles={onSetComponentStyles}
           variant={variant}
         />
-      )} */}
+      )}
 
     </div>
   );

@@ -2,6 +2,7 @@ import Button from '@blsodie/ui2/build/component/Button';
 import UIState from '../../../../components/ui-state';
 
 export default ({ dummyText, styles }) => {
+  console.log(styles)
   return (
     <div>
       <UIState label='Base'>
