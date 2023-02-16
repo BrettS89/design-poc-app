@@ -14,7 +14,7 @@ const EditButton = ({ componentStyles, setComponentStyles, setDummyText, dummyTe
 
   const onSetComponentStyles = (e) => {
     let val = e.target.value ?? null;
-    console.log(val);
+
     if (val && e.target.type === 'number'){
       val = Number(e.target.value);
     }

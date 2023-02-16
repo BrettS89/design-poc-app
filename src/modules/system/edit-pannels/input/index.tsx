@@ -19,6 +19,8 @@ const EditInput = ({ componentStyles, setComponentStyles, setDummyText, dummyTex
       val = Number(e.target.value);
     }
 
+    if (val === '') val = undefined;
+
     setComponentStyles({
       ...componentStyles,
       [variant]: {

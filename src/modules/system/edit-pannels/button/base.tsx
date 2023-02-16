@@ -85,6 +85,34 @@ const BaseState = ({ componentStyles, onSetComponentStyles, variant }) => {
         type='number'
         onChange={onSetComponentStyles}
       />
+
+      <TextField
+        id='borderStyle'
+        label='Border style'
+        value={componentStyles[variant]?.borderStyle || ''}
+        size='small'
+        style={styles.field}
+        type='text'
+        onChange={onSetComponentStyles}
+      />
+      <TextField
+        id='borderWidth'
+        label='Border width (px)'
+        value={componentStyles[variant]?.borderWidth ?? ''}
+        size='small'
+        style={styles.field}
+        type='number'
+        onChange={onSetComponentStyles}
+      />
+      <TextField
+        id='borderColor'
+        label='Border color'
+        value={componentStyles[variant]?.borderColor || ''}
+        size='small'
+        style={styles.field}
+        type='text'
+        onChange={onSetComponentStyles}
+      />
     </div>
   );
 };
